@@ -1,24 +1,67 @@
-# README
+# Backend Assessment
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> An API that fetches data from an external API wiith the help of rest_client and, returns a JSON object with an array of blog posts
 
-Things you may want to cover:
+## Built With
 
-* Ruby version
+- Ruby v2.7.0
+- Ruby on Rails v6.1.4
 
-* System dependencies
+### Prerequisites
 
-* Configuration
+Ruby: 2.7.0
+Rails: 6.
+Postgres: >=9.5
 
-* Database creation
+### Setup
 
-* Database initialization
+Instal gems with:
 
-* How to run the test suite
+```
+bundle install
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+### Usage
 
-* Deployment instructions
+Start server with:
 
-* ...
+```
+    rails server
+```
+
+Open `http://localhost:3000/` in your browser.
+
+### Run tests
+
+```
+    rpsec --format documentation
+```
+
+
+## Author
+
+👤 **Oloo Moses**
+
+- Github: [@githubhandle](https://github.com/oloomoses)
+- Twitter: [@twitterhandle](https://twitter.com/olooine)
+- Linkedin: [linkedin](https://www.linkedin.com/in/oloomoses/)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+
+Feel free to check the [issues page](issues/).
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## Acknowledgments
+
+TBA
+
+## 📝 License
+
+TBA
+
+
