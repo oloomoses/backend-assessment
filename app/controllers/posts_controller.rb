@@ -1,77 +1,36 @@
 class PostsController < ApplicationController
-  def index    
-    # tags = params[:tags]
+  def ping
+    render json: { 'success': true }, status: :ok
+  end
+
+  def index
     sort_by = params[:sortBy]
     direction = params[:direction]
 
     
 
     if sort_by && direction
-      # do something
       response = sort_direction(sort_by, direction)
       if response.nil?
         render json: {'error': 'sortBy parameter is invalid'}, status: :bad_request
       else
-        render json: response
+        render json: response, status: :ok
       end
     elsif sort_by
-      # do something
       response = sort_posts(sort_by)
       if response.nil?
         render json: {'error': 'sortBy parameter is invalid'}, status: :bad_request
       else
-        render json: response
+        render json: response, status: :ok
       end
     else
       response = get_tags
       if response.nil?
         render json: {'error': 'Tags parameter is required'}, status: :bad_request
       else
-        render json: response
+        render json: response, status: :ok
       end
     end
-
-    # if get_tags
-    #   data = ''
-      
-
-    #   sort_param = params[:sortBy]
-    #   direction = params[:direction]
-    #   to_json = JSON.parse(data)
-
-    #   if !sort_param.nil?
-    #     if sort_values.none?(sort_param)
-    #       response = { 'error': 'sortBy parameter is invalid' }
-    #     else
-
-          
-
-    #       if direction.nil?
-    #         response = to_json['posts'].sort { |a, b| a[sort_param] <=> b[sort_param]}
-    #       else
-    #         if direction_values.none?(direction)
-    #           response = { 'error': 'sortBy parameter is invalid' }
-    #         else
-    #           if direction === 'asc'
-    #             response = to_json['posts'].sort { |a, b| a[sort_param] <=> b[sort_param]}
-    #           else
-    #             response = to_json['posts'].sort { |a, b| b[sort_param] <=> a[sort_param]}
-    #           end
-    #         end
-    #       end
-    #     end
-
-        
-    #   end
-      
-    # else
-    #   render json: { 'error': 'Tags parameter is required' }, status: :bad_request
-    #   return
-    # end
-    
-    # render json: response
-    
-    
   end
 
   private
