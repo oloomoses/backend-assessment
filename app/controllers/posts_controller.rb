@@ -1,7 +1,5 @@
 class PostsController < ApplicationController
-  def index
-    sort_values = ['id', 'reads', 'likes', 'popularity', 'authorId']
-    direction_values = ['asc', 'desc']
+  def index    
     # tags = params[:tags]
     sort_by = params[:sortBy]
     direction = params[:direction]
@@ -10,10 +8,16 @@ class PostsController < ApplicationController
 
     if sort_by && direction
       # do something
+      response = sort_direction(sort_by, direction)
+      if response.nil?
+        render json: {'error': 'sortBy parameter is invalid'}, status: :bad_request
+      else
+        render json: response
+      end
     elsif sort_by
       # do something
       response = sort_posts(sort_by)
-      if sort_posts(sort_by).nil?
+      if response.nil?
         render json: {'error': 'sortBy parameter is invalid'}, status: :bad_request
       else
         render json: response
@@ -108,6 +112,14 @@ class PostsController < ApplicationController
       sorted = get_tags['posts'].sort { |a, b| a[sort_param] <=> b[sort_param]}
       return sorted
 
+    end
+
+    def sort_direction(sort_param, direction_param)
+      sort_values = ['id', 'reads', 'likes', 'popularity', 'authorId']
+      direction_values = ['asc', 'desc']
+      return nil if sort_values.none?(sort_param) || direction_values.none?(direction_param)
+      return get_tags['posts'].sort { |a, b| a[sort_param] <=> b[sort_param]} if direction_param === 'asc'
+      return get_tags['posts'].sort { |a, b| b[sort_param] <=> a[sort_param]} if direction_param === 'desc' 
     end
 end
   
